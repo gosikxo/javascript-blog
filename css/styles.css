@@ -45,7 +45,7 @@ body {
 }
 
 .blog .container img:hover {
-  -webkit-box-shadow: 0 0 5px 5px #dcabae;
+  box-shadow: 0 0 5px 5px #dcabae;
 }
 
 .section-title {
@@ -67,6 +67,8 @@ body {
   display: flex;
   margin-left: 10px;
   background: #E8D5D5;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .sidebar {
@@ -77,14 +79,40 @@ body {
 .posts {
   -ms-flex: 2 0 0px;
       flex: 2 0 0;
+  min-height: 600px;
+}
+
+@media (max-width: 411px) {
+  .posts {
+    -ms-flex-order: -1;
+        order: -1;
+    margin-bottom: 10px;
+  }
+}
+
+.article-title {
+  min-width: 200px;
 }
 
 .sidebar,
 .posts {
   background: #fff;
   margin-right: 10px;
-  padding: 40px;
   border-radius: 5px;
+  padding: 40px;
+}
+
+@media (max-width: 411px) {
+  .posts, .sidebar {
+    min-width: 350px;
+    margin: 0 auto;
+  }
+  .wrapper {
+    margin-left: 0;
+  }
+  .sidebar {
+    margin-top: 10px;
+  }
 }
 
 /* Logo */
@@ -142,5 +170,11 @@ body {
 
 .post-tags p {
   margin: 0 10px 0 0;
+}
+
+@media (max-width: 321px) {
+  .posts, .sidebar {
+    min-width: 200px;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

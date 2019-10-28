@@ -153,9 +153,12 @@ body {
 /* Post */
 .post {
   display: none;
+  transition: opacity 1s ease-out;
+  opacity: 0;
 }
 
 .post.active {
+  opacity: 1;
   display: block;
 }
 

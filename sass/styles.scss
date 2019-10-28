@@ -168,7 +168,10 @@ body {
 
 .post {
   display: none;
+  transition: opacity 1s ease-out;
+  opacity: 0;
   &.active {
+    opacity: 1;
     display: block;
   }
 }

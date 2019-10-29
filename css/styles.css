@@ -175,6 +175,10 @@ body {
   margin: 0 10px 0 0;
 }
 
+.post-tags .list li {
+  margin-right: 5px;
+}
+
 @media (max-width: 321px) {
   .posts, .sidebar {
     min-width: 200px;

@@ -162,8 +162,10 @@ body {
   display: block;
 }
 
-.post-author {
+.post-author a {
   font-style: italic;
+  text-decoration: none;
+  color: black;
 }
 
 .post-tags {

@@ -70,7 +70,7 @@ generateTitleLinks();
 
 function generateTags() {
   /* find all articles */
-  const articles = document.querySelectorAll('article');
+  const articles = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article: */
   for (const article of articles) {
     /* find tags wrapper */
@@ -144,7 +144,7 @@ addClickListenersToTags();
 
 
 function generateAuthor() {
-  const articles = document.querySelectorAll('article');
+  const articles = document.querySelectorAll(optArticleSelector);
   for (const article of articles) {
     const authorWrapper = article.querySelector(optArticleAuthorsSelector);
     const author = article.dataset.author;

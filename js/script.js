@@ -1,5 +1,14 @@
 'use strict';
 
+const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list',
+  optArticleAuthorsSelector = '.post-author',
+  optTagsListSelector = '.tags.list',
+  optCloudClassPrefix = 'tag-size-',
+  optAuthorsSelector = '.list.authors';
+
 function titleClickHandler(event) {
   event.preventDefault();
   const clickedElement = this;
@@ -33,13 +42,7 @@ function addEventListenersToLinks() {
   }
 }
 
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorsSelector = '.post-author',
-  optTagsListSelector = '.tags.list',
-  optCloudClassPrefix = 'tag-size-';
+
 
 
 function generateTitleLinks(customSelector = '') {
@@ -73,7 +76,7 @@ function calculateTagsParams(tags) {
   const params = { max: 0, min: 999999 };
   for (let tag in tags) {
     if (tags[tag] > params.max) {
-      params.max = tags[tag]; 
+      params.max = tags[tag];
     }
     if (tags[tag] < params.min) {
       params.min = tags[tag];
@@ -83,9 +86,9 @@ function calculateTagsParams(tags) {
 }
 
 function calculateTagClass(count, params) {
-  const relativeValue = count/params.max;
-  const range = params.max-params.min;
-  return `${optCloudClassPrefix}${Math.floor(relativeValue*range+params.min)}`;
+  const relativeValue = count / params.max;
+  const range = params.max - params.min;
+  return `${optCloudClassPrefix}${Math.floor(relativeValue * range + params.min)}`;
 }
 
 function generateTags() {
@@ -131,7 +134,7 @@ function generateTags() {
   /*[NEW] START LOOP: for each tag in allTags: */
   for (let tag in allTags) {
     /*[NEW] generate code of a link and add it to allTagsHTML */
-    allTagsHTML += `<li><a class="${calculateTagClass(allTags[tag], tagsParams)}" href="#tag-${tag}">${tag}</a></li>`;    
+    allTagsHTML += `<li><a class="${calculateTagClass(allTags[tag], tagsParams)}" href="#tag-${tag}">${tag}</a></li>`;
     // allTagsHTML += '<li><a class="" href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ') ' + '</a></li>';
   }
   /*[NEW] END LOOP: for each tag in allTags: */
@@ -140,7 +143,34 @@ function generateTags() {
 }
 generateTags();
 
+function generateAuthors() {
 
+  let allAuthors = {};
+
+  const articles = document.querySelectorAll(optArticleSelector);
+  
+  let html = '';
+
+  for (const article of articles) {
+    const author = article.dataset.author;
+
+    if (!Object.prototype.hasOwnProperty.call(allAuthors, author)) {
+      allAuthors[author] = 1;
+    } else {
+      allAuthors[author]++;
+    }   
+  }
+
+  for (const author in allAuthors) {
+    const linkHTML = `<li><a class="${calculateTagClass(allAuthors[author], calculateTagsParams(allAuthors))}" href="#author-${author}">${author}</a><li>`;
+    html += linkHTML;
+  }
+  
+  const authorsWrapper = document.querySelector(optAuthorsSelector); 
+
+  authorsWrapper.innerHTML = html;
+}
+generateAuthors();
 
 function tagClickHandler(event) {
   /* prevent default action for this event */

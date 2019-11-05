@@ -1,16 +1,15 @@
 'use strict';
 
 const opts = {
-  articleSelector : '.post',
-  titleSelector : '.post-title',
-  titleListSelector : '.titles',
-  articleTagsSelector : '.post-tags .list',
-  articleAuthorsSelector : '.post-author',
-  tagsListSelector : '.tags.list',
-  cloudClassPrefix : 'tag-size-',
-  authorsSelector : '.list.authors'
+  articleSelector: '.post',
+  titleSelector: '.post-title',
+  titleListSelector: '.titles',
+  articleTagsSelector: '.post-tags .list',
+  articleAuthorsSelector: '.post-author',
+  tagsListSelector: '.tags.list',
+  cloudClassPrefix: 'tag-size-',
+  authorsSelector: '.authors.list'
 }
-  
 
 function titleClickHandler(event) {
   event.preventDefault();
@@ -44,7 +43,6 @@ function addEventListenersToLinks() {
     link.addEventListener('click', titleClickHandler);
   }
 }
-
 
 
 
@@ -151,7 +149,7 @@ function generateAuthors() {
   let allAuthors = {};
 
   const articles = document.querySelectorAll(opts.articleSelector);
-  
+
   let html = '';
 
   for (const article of articles) {
@@ -161,15 +159,15 @@ function generateAuthors() {
       allAuthors[author] = 1;
     } else {
       allAuthors[author]++;
-    }   
+    }
   }
 
   for (const author in allAuthors) {
     const linkHTML = `<li><a class="${calculateTagClass(allAuthors[author], calculateTagsParams(allAuthors))}" href="#author-${author}">${author}</a><li>`;
     html += linkHTML;
   }
-  
-  const authorsWrapper = document.querySelector(opts.authorsSelector); 
+
+  const authorsWrapper = document.querySelector(opts.authorsSelector);
 
   authorsWrapper.innerHTML = html;
 }

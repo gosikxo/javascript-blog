@@ -131,6 +131,36 @@ body {
   padding: 0;
 }
 
+.list.tags li {
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.list.tags li .tag-size-1 {
+  font-size: 1rem;
+  color: #f7be16;
+}
+
+.list.tags li .tag-size-2 {
+  font-size: 1.2rem;
+  color: #ffafb0;
+}
+
+.list.tags li .tag-size-3 {
+  font-size: 1.4rem;
+  color: #fc7978;
+}
+
+.list.tags li .tag-size-4 {
+  font-size: 1.6rem;
+  color: #96d1c7;
+}
+
+.list.tags li .tag-size-5 {
+  font-size: 1.8rem;
+  color: #5eb7b7;
+}
+
 .list a {
   color: black;
   text-decoration: none;

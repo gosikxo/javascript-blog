@@ -6,9 +6,15 @@ $color-light: #fff;
 $color-dark: #444;
 $color-pink: #E8D5D5;
 $color-light-pink: #FBF8F5;
+$color-turquoise: #5eb7b7;
+$color-4: #96d1c7;
+$color-3: #fc7978;
+$color-2: #ffafb0;
+$color-1: #f7be16;
 $font-logo: "Amatic SC", cursive;
 $font-header: "Amatic SC", cursive;
 $font-text: "Josefin Sans", sans-serif;
+
 
 /* Global */
 
@@ -137,8 +143,32 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
-
   
+  &.tags li {
+    display: inline-block;
+    margin-right: 4px;
+
+    .tag-size-1 {
+      font-size: 1rem;
+      color: $color-1;
+    }
+    .tag-size-2 {
+      font-size: 1.2rem;
+      color: $color-2;
+    }
+    .tag-size-3 {
+      font-size: 1.4rem;
+      color: $color-3;
+    }
+    .tag-size-4 {
+      font-size: 1.6rem;
+      color: $color-4;
+    }
+    .tag-size-5 {
+      font-size: 1.8rem;
+      color: $color-turquoise;
+    }
+  }
 
   a {
     color: black;

@@ -1,13 +1,16 @@
 'use strict';
 
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorsSelector = '.post-author',
-  optTagsListSelector = '.tags.list',
-  optCloudClassPrefix = 'tag-size-',
-  optAuthorsSelector = '.list.authors';
+const opts = {
+  articleSelector : '.post',
+  titleSelector : '.post-title',
+  titleListSelector : '.titles',
+  articleTagsSelector : '.post-tags .list',
+  articleAuthorsSelector : '.post-author',
+  tagsListSelector : '.tags.list',
+  cloudClassPrefix : 'tag-size-',
+  authorsSelector : '.list.authors'
+}
+  
 
 function titleClickHandler(event) {
   event.preventDefault();
@@ -48,16 +51,16 @@ function addEventListenersToLinks() {
 function generateTitleLinks(customSelector = '') {
   let html = '';
   /* remove contents of titleList */
-  const titleList = document.querySelector(optTitleListSelector);
+  const titleList = document.querySelector(opts.titleListSelector);
   titleList.innerHTML = '';
   /* for each article */
-  const articles = document.querySelectorAll(optArticleSelector + customSelector);
+  const articles = document.querySelectorAll(opts.articleSelector + customSelector);
   for (let article of articles) {
     /* get the article id */
     const articleId = article.getAttribute('id');
     /* find the title element */
     /* get the title from the title element */
-    const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+    const articleTitle = article.querySelector(opts.titleSelector).innerHTML;
     /* create HTML of the link */
     const linkHTML = '<li><a class="article-link" href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
 
@@ -88,18 +91,18 @@ function calculateTagsParams(tags) {
 function calculateTagClass(count, params) {
   const relativeValue = count / params.max;
   const range = params.max - params.min;
-  return `${optCloudClassPrefix}${Math.floor(relativeValue * range + params.min)}`;
+  return `${opts.cloudClassPrefix}${Math.floor(relativeValue * range + params.min)}`;
 }
 
 function generateTags() {
   /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
   /* find all articles */
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(opts.articleSelector);
   /* START LOOP: for every article: */
   for (const article of articles) {
     /* find tags wrapper */
-    const tagsWrapper = article.querySelector(optArticleTagsSelector);
+    const tagsWrapper = article.querySelector(opts.articleTagsSelector);
     /* make html variable with empty string */
     let html = '';
     /* get tags from data-tags attribute */
@@ -127,7 +130,7 @@ function generateTags() {
     /* END LOOP: for every article: */
   }
   /* [NEW] find list of tags in right column */
-  const tagList = document.querySelector(optTagsListSelector);
+  const tagList = document.querySelector(opts.tagsListSelector);
   const tagsParams = calculateTagsParams(allTags);
   /*[NEW] create variable for all links HTML code*/
   let allTagsHTML = ' ';
@@ -147,7 +150,7 @@ function generateAuthors() {
 
   let allAuthors = {};
 
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(opts.articleSelector);
   
   let html = '';
 
@@ -166,7 +169,7 @@ function generateAuthors() {
     html += linkHTML;
   }
   
-  const authorsWrapper = document.querySelector(optAuthorsSelector); 
+  const authorsWrapper = document.querySelector(opts.authorsSelector); 
 
   authorsWrapper.innerHTML = html;
 }
@@ -220,9 +223,9 @@ addClickListenersToTags();
 
 
 function generateAuthor() {
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(opts.articleSelector);
   for (const article of articles) {
-    const authorWrapper = article.querySelector(optArticleAuthorsSelector);
+    const authorWrapper = article.querySelector(opts.articleAuthorsSelector);
     const author = article.dataset.author;
     authorWrapper.innerHTML = '<a href="#author-' + author + '">by ' + author + '</a>';
   }

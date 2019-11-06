@@ -14,8 +14,9 @@ const opts = {
 const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
   tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
-  authorLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
   tagCloudLink: Handlebars.compile(document.querySelector('#template-tagCloud-link').innerHTML),
+  authorCloudLink: Handlebars.compile(document.querySelector('#template-authorCloud-link').innerHTML),
 }
 
 function titleClickHandler(event) {
@@ -118,9 +119,9 @@ function generateTags() {
     /* START LOOP: for each tag */
     for (const tag of tags) {
       /* generate HTML of the link */
-      const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
-      /*const linkHTMLData = {id: tag-tag, title: tag};
-      const linkHTML = templates.tagLink(linkHTMLData);*/
+      //const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+      const linkHTMLData = `{id: tag-${tag}, title: tag}`;
+      const linkHTML = templates.tagLink(linkHTMLData);
       /* add generated code to html variable */
       html += linkHTML;
       /* [NEW] check if this link is NOT already in allTags */
@@ -238,10 +239,10 @@ function generateAuthor() {
   for (const article of articles) {
     const authorWrapper = article.querySelector(opts.articleAuthorsSelector);
     const author = article.dataset.author;
-    authorWrapper.innerHTML = '<a href="#author-' + author + '">by ' + author + '</a>';
-    /*const linkHTMLData = {id: author-author, title: author};
+    //authorWrapper.innerHTML = '<a href="#author-' + author + '">by ' + author + '</a>';
+    const linkHTMLData = `{id: author-${author}, title: author}`;
       const linkHTML = templates.authorLink(linkHTMLData);
-      authorWrapper.innerHTML = linkHTML*/
+      authorWrapper.innerHTML = linkHTML
   }
 }
 

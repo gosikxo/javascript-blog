@@ -177,7 +177,7 @@ function generateAuthors() {
   }
 
   for (const author in allAuthors) {
-    const linkHTML = `<li><a class="${calculateTagClass(allAuthors[author], calculateTagsParams(allAuthors))}" href="#author-${author}">${author}</a><li>`;
+    const linkHTML = `<li><a class="${calculateTagsParams(allAuthors)}" href="#author-${author}">${author}</a><li>`;
     html += linkHTML;
   }
 

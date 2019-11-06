@@ -160,7 +160,7 @@ generateTags();
 
 function generateAuthors() {
 
-  let allAuthors = {};
+  const allAuthorsData = {authors: []};
 
   const articles = document.querySelectorAll(opts.articleSelector);
 
@@ -177,8 +177,13 @@ function generateAuthors() {
   }
 
   for (const author in allAuthors) {
-    const linkHTML = `<li><a class="${calculateTagsParams(allAuthors)}" href="#author-${author}">${author}</a><li>`;
-    html += linkHTML;
+    //const linkHTML = `<li><a class="${calculateTagsParams(allAuthors)}" href="#author-${author}">${author}</a><li>`;
+    //html += linkHTML;
+    allAuthorsData.authors.push({
+      author: author,
+      count: allAuthors[author],
+      className: calculateTagClass(allAuthors[author], authorsParams)
+    });
   }
 
   const authorsWrapper = document.querySelector(opts.authorsSelector);

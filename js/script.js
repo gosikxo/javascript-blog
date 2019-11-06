@@ -16,7 +16,7 @@ const templates = {
   tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
   authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
   tagCloudLink: Handlebars.compile(document.querySelector('#template-tagCloud-link').innerHTML),
-  authorCloudLink: Handlebars.compile(document.querySelector('#template-authorCloud-link').innerHTML),
+  authorLinks: Handlebars.compile(document.querySelector('#template-authorlinks').innerHTML),
 }
 
 function titleClickHandler(event) {
@@ -161,6 +161,7 @@ generateTags();
 function generateAuthors() {
 
   const allAuthorsData = {authors: []};
+  const allAuthors= [];
 
   const articles = document.querySelectorAll(opts.articleSelector);
 
@@ -182,13 +183,14 @@ function generateAuthors() {
     allAuthorsData.authors.push({
       author: author,
       count: allAuthors[author],
-      className: calculateTagClass(allAuthors[author], authorsParams)
+
     });
   }
 
   const authorsWrapper = document.querySelector(opts.authorsSelector);
 
-  authorsWrapper.innerHTML = html;
+  //authorsWrapper.innerHTML = html;
+  authors.Wrapper.innerHTML = templates.authorCloudLink(allAuthorsData);
 }
 generateAuthors();
 

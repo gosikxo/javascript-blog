@@ -307,9 +307,9 @@
         <li>{{ tag }}</li>
         {{/each}}
       </script>
-    <script id="template-authorCloud-link" type="text/x-handlebars-template">
-        {{#each tags}}
-        <li>{{ tag }}</li>
+    <script id="template-authorlinks" type="text/x-handlebars-template">
+        {{#each authors}}
+        <li><a href={{'#author'-${author}>${author}}</a><li></li>
         {{/each}}
       </script>
       

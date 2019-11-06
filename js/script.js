@@ -181,7 +181,7 @@ function generateAuthors() {
     console.log(author, allAuthors);
     //const linkHTML = `<li><a class="${calculateTagsParams(allAuthors)}" href="#author-${author}">${author}</a><li>`;
     //html += linkHTML;
-    allAuthorsData.author.push({
+    allAuthorsData.authors.push({
       author: author,
       count: allAuthors[author],
 
@@ -191,7 +191,7 @@ function generateAuthors() {
   const authorsWrapper = document.querySelector(opts.authorsSelector);
 
   //authorsWrapper.innerHTML = html;
-  authors.Wrapper.innerHTML = templates.authorlinks(allAuthorsData);
+  authorsWrapper.innerHTML = templates.authorLinks(allAuthorsData);
 }
 generateAuthors();
 

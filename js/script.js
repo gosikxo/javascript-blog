@@ -75,6 +75,7 @@ function generateTitleLinks(customSelector = '') {
     html = html + linkHTML;
 
   }
+  console.log({html});
   titleList.innerHTML = html;
 
   addEventListenersToLinks();
@@ -120,7 +121,7 @@ function generateTags() {
     for (const tag of tags) {
       /* generate HTML of the link */
       //const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
-      const linkHTMLData = `{id: tag-${tag}, title: tag}`;
+      const linkHTMLData = {id: `tag-${tag}`, title: tag};
       const linkHTML = templates.tagLink(linkHTMLData);
       /* add generated code to html variable */
       html += linkHTML;
@@ -184,13 +185,13 @@ function generateAuthors() {
     allAuthorsData.authors.push({
       author: author,
       count: allAuthors[author],
-
     });
   }
 
   const authorsWrapper = document.querySelector(opts.authorsSelector);
 
   //authorsWrapper.innerHTML = html;
+  console.log(templates.authorLinks(allAuthorsData));
   authorsWrapper.innerHTML = templates.authorLinks(allAuthorsData);
 }
 generateAuthors();
@@ -248,9 +249,9 @@ function generateAuthor() {
     const authorWrapper = article.querySelector(opts.articleAuthorsSelector);
     const author = article.dataset.author;
     //authorWrapper.innerHTML = '<a href="#author-' + author + '">by ' + author + '</a>';
-    const linkHTMLData = `{id: author-${author}, title: author}`;
-      const linkHTML = templates.authorLink(linkHTMLData);
-      authorWrapper.innerHTML = linkHTML
+     const linkHTMLData = {id: `author-${author}`, title: author};
+       const linkHTML = templates.authorLink(linkHTMLData);
+    authorWrapper.innerHTML = linkHTML
   }
 }
 
